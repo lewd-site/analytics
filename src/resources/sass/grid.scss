@@ -1,0 +1,28 @@
+%container {
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 1200px;
+  min-height: 100vh;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+%row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+%col {
+  flex: 1;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+@for $i from 1 through 12 {
+  %col-#{$i} {
+    flex: 0 0 ($i / 12 * 100%);
+  }
+}

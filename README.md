@@ -16,3 +16,10 @@ docker-compose up --build
 docker-compose exec php-fpm sh
 php artisan migrate
 ```
+
+- Build frontend:
+
+```sh
+yarn install
+yarn prod
+```

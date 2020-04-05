@@ -1,0 +1,19 @@
+.layout {
+  @extend %container, %row;
+
+  &__sidebar {
+    @extend %col, %col-2;
+  }
+
+  &__sidebar-inner {
+    @extend %block;
+  }
+
+  &__main {
+    @extend %col;
+  }
+
+  &__main-inner {
+    @extend %block;
+  }
+}

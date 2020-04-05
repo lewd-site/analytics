@@ -1,1 +1,86 @@
-//
+@import url('../../node_modules/normalize.css/normalize.css');
+@import url('../../node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: mix(#fff, #000, 95%);
+  color: mix(#fff, #000, 10%);
+
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  margin-bottom: 16px;
+
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  border: 0;
+}
+
+@import './grid.scss';
+
+%block {
+  background: #fff;
+  border-radius: 4px;
+
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  padding: 16px;
+}
+
+.link {
+  background: none;
+  color: mix(#fff, #000, 10%);
+
+  border: 0;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  cursor: pointer;
+}
+
+.btn {
+  background: mix(#fff, #000, 95%);
+  color: mix(#fff, #000, 10%);
+
+  border: 0;
+  border-radius: 4px;
+
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+
+  padding: 8px 16px;
+
+  height: 32px;
+}
+
+@import './layout.scss';
+@import './form.scss';
+
+.sidebar {
+  font-size: 1.25rem;
+}
