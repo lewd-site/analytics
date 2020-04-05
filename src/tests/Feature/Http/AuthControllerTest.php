@@ -123,6 +123,11 @@ class AuthControllerTest extends TestCase
 
     $response->assertRedirect(route('auth.login'));
     $this->assertGuest();
+    $this->assertDatabaseHas('users', [
+      'name'      => 'User',
+      'email'     => 'user@example.com',
+      'is_active' => false,
+    ]);
   }
 
   public function test_registerSubmit_invalidName(): void
