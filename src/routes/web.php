@@ -24,3 +24,7 @@ Route::name('auth.')->group(function () {
 Route::name('dashboard.')->middleware('auth')->group(function () {
   Route::get('/', 'DashboardController@index')->name('index');
 });
+
+Route::name('events.')->middleware('auth')->group(function () {
+  Route::get('/pageviews', 'EventController@pageviews')->name('pageviews');
+});

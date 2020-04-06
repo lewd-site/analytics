@@ -1,25 +1,36 @@
 # Analytics
 
-## TL;DR
+## Install
 
-- Adjust docker-compose `.env` file.
-- Build and run docker containers:
+- Adjust root docker-compose `.env` file.
+- Run docker-compose.
 
 ```sh
-export UID
+export UID # Used to run php-fpm with host user's file permissions
 docker-compose up --build
 ```
 
-- Log into php container and apply database migrations:
+- Copy `src/resources/config.example.ts` to the `src/resources/config.ts` and configure frontend.
+- Install dependencies and build frontend.
 
 ```sh
-docker-compose exec php-fpm sh
-php artisan migrate
+cd src
+cp resources/config.example.ts resources/config.ts
+yarn install
+yarn dev
 ```
 
-- Build frontend:
+- Log into the php-fpm container.
+- Copy `.env.example` to the `.env`.
+- Install PHP dependencies.
+- Generate key and apply database migrations.
 
 ```sh
-yarn install
-yarn prod
+cd ..
+export UID
+docker-compose exec php-fpm sh
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
 ```

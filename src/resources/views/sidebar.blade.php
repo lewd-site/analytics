@@ -6,6 +6,10 @@
     </li>
 
     <li>
+      <a class="link" href="/pageviews">Page Views</a>
+    </li>
+
+    <li>
       <form method="POST" action="/logout">
         @csrf
         <button class="link" type="submit">Sign Out</button>
