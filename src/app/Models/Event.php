@@ -51,4 +51,9 @@ class Event extends Model
   {
     return $this->belongsTo(UserAgent::class);
   }
+
+  public function geoip()
+  {
+    return $this->belongsTo(GeoIp::class, 'ip', 'ip');
+  }
 }

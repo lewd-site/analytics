@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Helpers\UrlHelper;
+use App\Jobs\LookupGeoIp;
 use App\Models\Event;
+use App\Models\GeoIp;
 use App\Models\Referrer;
 use App\Models\UserAgent;
 use Exception;
@@ -28,6 +30,11 @@ class EventService
     ?string $referrer,
     ?string $userAgent
   ): Event {
+    if (!empty($ip)) {
+      $geoIp = GeoIp::find($ip);
+      LookupGeoIp::dispatchUnless(isset($geoIp), $ip);
+    }
+
     $referrerId = null;
     if (!empty($referrer)) {
       try {

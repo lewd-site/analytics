@@ -14,6 +14,9 @@ class Referrer extends Model
   const CREATED_AT = null;
   const UPDATED_AT = null;
 
+  /** @var bool $timestamps */
+  public $timestamps = false;
+
   /**
    * The attributes that are mass assignable.
    *
