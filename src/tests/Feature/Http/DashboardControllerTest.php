@@ -12,7 +12,7 @@ class DashboardControllerTest extends TestCase
 
   public function test_index(): void
   {
-    $user = factory(User::class)->create();
+    $user = factory(User::class)->create(['is_active' => true]);
 
     $response = $this->actingAs($user)->get('/');
 

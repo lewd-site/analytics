@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Services\EventService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -13,30 +14,39 @@ class EventController extends Controller
   const VISITOR_EXPIRE = 60 * 24 * 365;
   const SESSION_EXPIRE = 30;
 
+  protected EventService $eventService;
+
+  public function __construct(EventService $eventService)
+  {
+    $this->eventService = $eventService;
+  }
+
   public function collect(Request $request)
   {
     $input = $request->validate([
       'event' => 'required|max:32',
       'data'  => 'nullable|max:2048',
-      'host'  => 'required|max:256',
-      'path'  => 'required|max:2048',
+
+      'host' => 'required|max:256',
+      'path' => 'required|max:2048',
+
+      'referrer'   => 'nullable|max:2048',
     ]);
 
     $visitorId = $request->cookie('vid', Str::random(32));
     $sessionId = $request->cookie('sid', Str::random(32));
-    $ip = $request->ip();
 
-    Event::create([
-      'event' => $input['event'],
-      'data'  => $input['data'] ?? null,
-
-      'visitor_id' => $visitorId,
-      'session_id' => $sessionId,
-      'ip'         => $ip,
-
-      'host' => $input['host'],
-      'path' => $input['path'],
-    ]);
+    $this->eventService->create(
+      $input['event'],
+      $input['data'] ?? null,
+      $visitorId,
+      $sessionId,
+      $request->ip(),
+      $input['host'],
+      $input['path'],
+      $input['referrer'] ?? null,
+      $request->userAgent()
+    );
 
     return response('', 204)
       ->cookie('vid', $visitorId, static::VISITOR_EXPIRE, '/')

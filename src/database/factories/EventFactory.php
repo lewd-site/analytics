@@ -22,13 +22,19 @@ $factory->define(Event::class, function (Faker $faker) {
   }
 
   return [
-    'event'      => 'pageview',
-    'data'       => null,
+    'event' => 'pageview',
+    'data'  => null,
+
     'visitor_id' => $visitor_ids[mt_rand(0, count($visitor_ids) - 1)],
     'session_id' => $session_ids[mt_rand(0, count($visitor_ids) - 1)],
     'ip'         => $faker->ipv4,
-    'host'       => 'http://localhost',
-    'path'       => '/',
+
+    'host' => 'https://' . $faker->domainName,
+    'path' => '/' . $faker->slug,
+
+    'referrer_id'   => null,
+    'user_agent_id' => null,
+
     'created_at' => $faker->dateTimeThisYear,
   ];
 });

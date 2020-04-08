@@ -22,6 +22,7 @@ export const analytics: Analytics = {
     formData.append('data', data || '');
     formData.append('host', origin);
     formData.append('path', path);
+    formData.append('referrer', document.referrer || '');
 
     const url = `${config.url}/api/collect`;
     navigator.sendBeacon(url, formData);
