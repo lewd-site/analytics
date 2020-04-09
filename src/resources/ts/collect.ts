@@ -60,7 +60,7 @@ setTimeout(() => {
 
   let time = 0;
 
-  setTimeout(() => {
+  setInterval(() => {
     time += KEEP_ALIVE_INTERVAL / 1000;
     analytics.event('keep-alive', JSON.stringify({ time }));
   }, KEEP_ALIVE_INTERVAL);

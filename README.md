@@ -10,12 +10,12 @@ export UID # Used to run php-fpm with host user's file permissions
 docker-compose up --build
 ```
 
-- Copy `src/resources/config.example.ts` to the `src/resources/config.ts` and configure frontend.
+- Copy `src/resources/ts/config.example.ts` to the `src/resources/ts/config.ts` and configure frontend.
 - Install dependencies and build frontend.
 
 ```sh
 cd src
-cp resources/config.example.ts resources/config.ts
+cp resources/ts/config.example.ts resources/ts/config.ts
 yarn install
 yarn dev
 ```

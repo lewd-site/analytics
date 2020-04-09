@@ -20,8 +20,16 @@
       <tr>
         <th scope="row">{{ date('d M Y H:i:s', strtotime($event['created_at'])) }}</th>
         <td>{{ $event['ip'] }}</td>
-        <td>{{ $event['host'] ?? '' }}</td>
+
+        @if (!empty($event['host']))
+        <td><a class="link" href="{{ $event['host'] }}" target="_blank">{{ $event['host'] }}</a></td>
+        @endif
+
+        @if (!empty($event['host']))
+        <td><a class="link" href="{{ $event['host'] }}{{ $event['path'] }}" target="_blank">{{ urldecode($event['path']) }}</a></td>
+        @else
         <td>{{ urldecode($event['path']) }}</td>
+        @endif
       </tr>
     @endforeach
     </tbody>

@@ -88,7 +88,8 @@ class EventController extends Controller
       $last = Arr::last($events);
       $first = head($events);
 
-      $bounds = Event::selectRaw('MAX(id) as max_id, MIN(id) as min_id')
+      $bounds = Event::where('event', 'pageview')
+        ->selectRaw('MAX(id) as max_id, MIN(id) as min_id')
         ->get('max_id', 'min_id')
         ->first();
 
