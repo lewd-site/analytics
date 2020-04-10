@@ -42,8 +42,7 @@ setTimeout(() => {
 
   window.onerror = (msg, url, line, col, error) => {
     setTimeout(() => {
-      const data: any = { msg, url, line, col, error };
-
+      const data = JSON.stringify({ msg, url, line, col, error });
       analytics.event('error', data);
     });
 

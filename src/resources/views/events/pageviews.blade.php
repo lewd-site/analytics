@@ -10,8 +10,7 @@
       <tr>
         <th>Date</th>
         <th>IP</th>
-        <th>Host</th>
-        <th>Path</th>
+        <th>Location</th>
       </tr>
     </thead>
 
@@ -22,13 +21,7 @@
         <td>{{ $event['ip'] }}</td>
 
         @if (!empty($event['host']))
-        <td><a class="link" href="{{ $event['host'] }}" target="_blank">{{ $event['host'] }}</a></td>
-        @endif
-
-        @if (!empty($event['host']))
-        <td><a class="link" href="{{ $event['host'] }}{{ $event['path'] }}" target="_blank">{{ urldecode($event['path']) }}</a></td>
-        @else
-        <td>{{ urldecode($event['path']) }}</td>
+        <td><a class="link" href="{{ $event['host'] }}{{ $event['path'] }}" target="_blank">{{ $event['host'] }}{{ urldecode($event['path']) }}</a></td>
         @endif
       </tr>
     @endforeach
